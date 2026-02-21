@@ -1,0 +1,637 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agentic AI — Course Presentation</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #0a0a1a;
+            color: #e0e0e0;
+            overflow: hidden;
+            height: 100vh;
+            width: 100vw;
+        }
+
+        .slide {
+            display: none;
+            width: 100vw;
+            height: 100vh;
+            padding: 60px 80px;
+            position: absolute;
+            top: 0;
+            left: 0;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .slide.active {
+            display: flex;
+        }
+
+        /* Title slide */
+        .slide-title {
+            background: linear-gradient(135deg, #0a0a2e 0%, #1a1a4e 40%, #2d1b69 100%);
+            text-align: center;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .slide-title h1 {
+            font-size: 3.5em;
+            font-weight: 800;
+            background: linear-gradient(90deg, #60a5fa, #a78bfa, #f472b6);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 20px;
+        }
+
+        .slide-title .subtitle {
+            font-size: 1.5em;
+            color: #94a3b8;
+            margin-bottom: 40px;
+        }
+
+        .slide-title .meta {
+            font-size: 1em;
+            color: #64748b;
+        }
+
+        /* Content slides */
+        .slide-content {
+            background: linear-gradient(180deg, #0f0f2e 0%, #1a1a3e 100%);
+        }
+
+        .slide-content h2 {
+            font-size: 2.4em;
+            font-weight: 700;
+            color: #60a5fa;
+            margin-bottom: 40px;
+            padding-bottom: 15px;
+            border-bottom: 3px solid #1e3a5f;
+        }
+
+        .slide-content ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .slide-content ul li {
+            font-size: 1.35em;
+            line-height: 1.6;
+            margin-bottom: 18px;
+            padding-left: 35px;
+            position: relative;
+            color: #cbd5e1;
+        }
+
+        .slide-content ul li::before {
+            content: '▸';
+            position: absolute;
+            left: 0;
+            color: #a78bfa;
+            font-weight: bold;
+        }
+
+        .slide-content p {
+            font-size: 1.3em;
+            line-height: 1.8;
+            color: #cbd5e1;
+            margin-bottom: 20px;
+        }
+
+        .slide-content .highlight-box {
+            background: rgba(96, 165, 250, 0.1);
+            border-left: 4px solid #60a5fa;
+            padding: 20px 25px;
+            border-radius: 0 8px 8px 0;
+            margin: 25px 0;
+        }
+
+        .slide-content .highlight-box p {
+            margin: 0;
+            font-size: 1.2em;
+        }
+
+        /* Two column layout */
+        .two-col {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            margin-top: 10px;
+        }
+
+        .col h3 {
+            font-size: 1.4em;
+            color: #a78bfa;
+            margin-bottom: 20px;
+        }
+
+        .col ul li {
+            font-size: 1.15em !important;
+            margin-bottom: 12px !important;
+        }
+
+        /* Diagram slide */
+        .diagram {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 30px;
+            margin: 30px 0;
+            flex-wrap: wrap;
+        }
+
+        .diagram-box {
+            background: rgba(167, 139, 250, 0.15);
+            border: 2px solid #a78bfa;
+            border-radius: 12px;
+            padding: 25px 30px;
+            text-align: center;
+            font-size: 1.15em;
+            font-weight: 600;
+            color: #e0e0e0;
+            min-width: 160px;
+        }
+
+        .diagram-arrow {
+            font-size: 2em;
+            color: #60a5fa;
+        }
+
+        /* Table */
+        .slide-content table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        .slide-content th {
+            background: rgba(96, 165, 250, 0.2);
+            color: #60a5fa;
+            padding: 14px 20px;
+            text-align: left;
+            font-size: 1.15em;
+            border-bottom: 2px solid #1e3a5f;
+        }
+
+        .slide-content td {
+            padding: 12px 20px;
+            font-size: 1.1em;
+            border-bottom: 1px solid #1e2a3f;
+            color: #cbd5e1;
+        }
+
+        .slide-content tr:hover td {
+            background: rgba(96, 165, 250, 0.05);
+        }
+
+        /* End slide */
+        .slide-end {
+            background: linear-gradient(135deg, #1a1a4e 0%, #2d1b69 50%, #4a1d6e 100%);
+            text-align: center;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .slide-end h2 {
+            font-size: 3em;
+            background: linear-gradient(90deg, #60a5fa, #a78bfa);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            border: none;
+            margin-bottom: 25px;
+        }
+
+        /* Navigation */
+        .nav {
+            position: fixed;
+            bottom: 30px;
+            right: 40px;
+            display: flex;
+            gap: 12px;
+            z-index: 100;
+        }
+
+        .nav button {
+            background: rgba(96, 165, 250, 0.2);
+            border: 1px solid #60a5fa;
+            color: #60a5fa;
+            padding: 10px 22px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1em;
+            transition: all 0.2s;
+        }
+
+        .nav button:hover {
+            background: rgba(96, 165, 250, 0.4);
+        }
+
+        .slide-counter {
+            position: fixed;
+            bottom: 35px;
+            left: 40px;
+            color: #475569;
+            font-size: 0.95em;
+            z-index: 100;
+        }
+
+        .progress-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #60a5fa, #a78bfa);
+            transition: width 0.3s ease;
+            z-index: 100;
+        }
+    </style>
+</head>
+<body>
+
+<div class="progress-bar" id="progressBar"></div>
+
+<!-- Slide 1: Title -->
+<div class="slide slide-title active" id="slide-1">
+    <h1>Agentic AI</h1>
+    <div class="subtitle">Building Autonomous Intelligent Systems</div>
+    <div class="meta">OLI-AAI-101 | OpenClaw Learning Initiative</div>
+</div>
+
+<!-- Slide 2: What is Agentic AI -->
+<div class="slide slide-content" id="slide-2">
+    <h2>What is Agentic AI?</h2>
+    <p>Agentic AI refers to AI systems that can <strong>independently</strong> perceive their environment, make decisions, take actions, and learn from outcomes — with minimal human guidance.</p>
+    <div class="highlight-box">
+        <p><strong>Key Idea:</strong> An AI agent doesn't just answer questions — it <em>does things</em>. It reasons about what to do, uses tools, and works toward goals on its own.</p>
+    </div>
+    <ul>
+        <li>Goes beyond simple chatbots and autocomplete</li>
+        <li>Can break complex tasks into steps and execute them</li>
+        <li>Interacts with the real world through tools and APIs</li>
+    </ul>
+</div>
+
+<!-- Slide 3: Traditional AI vs Agentic AI -->
+<div class="slide slide-content" id="slide-3">
+    <h2>Traditional AI vs. Agentic AI</h2>
+    <div class="two-col">
+        <div class="col">
+            <h3>Traditional AI / Chatbots</h3>
+            <ul>
+                <li>Responds only when prompted</li>
+                <li>Single turn: question in, answer out</li>
+                <li>No memory across interactions</li>
+                <li>Cannot take actions in the world</li>
+                <li>Human does all the planning</li>
+            </ul>
+        </div>
+        <div class="col">
+            <h3>Agentic AI</h3>
+            <ul>
+                <li>Proactively works toward goals</li>
+                <li>Multi-step reasoning and execution</li>
+                <li>Maintains memory and context</li>
+                <li>Uses tools (search, code, APIs)</li>
+                <li>Plans, acts, and self-corrects</li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<!-- Slide 4: Core Components of an AI Agent -->
+<div class="slide slide-content" id="slide-4">
+    <h2>Core Components of an AI Agent</h2>
+    <div class="diagram">
+        <div class="diagram-box">Perception<br><small>Observe inputs</small></div>
+        <div class="diagram-arrow">&#8594;</div>
+        <div class="diagram-box">Reasoning<br><small>Think & plan</small></div>
+        <div class="diagram-arrow">&#8594;</div>
+        <div class="diagram-box">Action<br><small>Use tools & act</small></div>
+        <div class="diagram-arrow">&#8594;</div>
+        <div class="diagram-box">Learning<br><small>Reflect & improve</small></div>
+    </div>
+    <ul>
+        <li><strong>Perception:</strong> The agent receives input — a user request, sensor data, or system event</li>
+        <li><strong>Reasoning:</strong> An LLM (like Claude or GPT) thinks through what to do next</li>
+        <li><strong>Action:</strong> The agent calls tools, writes code, searches the web, or sends messages</li>
+        <li><strong>Learning:</strong> The agent reflects on results and adjusts its approach</li>
+    </ul>
+</div>
+
+<!-- Slide 5: The Role of LLMs -->
+<div class="slide slide-content" id="slide-5">
+    <h2>LLMs: The Brain of the Agent</h2>
+    <p>Large Language Models (LLMs) like Claude, GPT, and Gemini serve as the <strong>reasoning engine</strong> inside modern AI agents.</p>
+    <ul>
+        <li><strong>Natural language understanding</strong> — interpret complex user requests</li>
+        <li><strong>Planning</strong> — break big tasks into smaller steps</li>
+        <li><strong>Decision making</strong> — choose which tool to use and when</li>
+        <li><strong>Code generation</strong> — write and debug code on the fly</li>
+        <li><strong>Self-reflection</strong> — evaluate their own outputs and retry if needed</li>
+    </ul>
+    <div class="highlight-box">
+        <p>The LLM doesn't just generate text — it <em>orchestrates</em> an entire workflow of reasoning, tool use, and evaluation.</p>
+    </div>
+</div>
+
+<!-- Slide 6: The ReAct Pattern -->
+<div class="slide slide-content" id="slide-6">
+    <h2>The ReAct Pattern (Reasoning + Acting)</h2>
+    <p>ReAct is a foundational pattern where the agent alternates between <strong>thinking</strong> and <strong>doing</strong>.</p>
+    <div class="diagram">
+        <div class="diagram-box">Thought<br><small>"I need to find..."</small></div>
+        <div class="diagram-arrow">&#8594;</div>
+        <div class="diagram-box">Action<br><small>search("query")</small></div>
+        <div class="diagram-arrow">&#8594;</div>
+        <div class="diagram-box">Observation<br><small>Results returned</small></div>
+        <div class="diagram-arrow">&#8594;</div>
+        <div class="diagram-box">Thought<br><small>"Now I know..."</small></div>
+    </div>
+    <ul>
+        <li>The agent <strong>thinks out loud</strong> about what it needs to do</li>
+        <li>It then <strong>takes an action</strong> (e.g., call a tool)</li>
+        <li>It <strong>observes</strong> the result and decides the next step</li>
+        <li>This loop repeats until the task is complete</li>
+    </ul>
+</div>
+
+<!-- Slide 7: Tool Use -->
+<div class="slide slide-content" id="slide-7">
+    <h2>Tool Use: How Agents Interact with the World</h2>
+    <p>Agents become truly useful when they can <strong>use tools</strong> — external functions that extend their capabilities beyond text generation.</p>
+    <ul>
+        <li><strong>Web Search</strong> — look up current information online</li>
+        <li><strong>Code Execution</strong> — write and run Python, JavaScript, etc.</li>
+        <li><strong>File Operations</strong> — read, write, and manage files</li>
+        <li><strong>API Calls</strong> — interact with databases, services, and platforms</li>
+        <li><strong>Calculators & Data Tools</strong> — perform precise computations</li>
+    </ul>
+    <div class="highlight-box">
+        <p><strong>Example:</strong> "What's the weather in Nairobi?" — The agent calls a weather API, gets live data, and presents the answer.</p>
+    </div>
+</div>
+
+<!-- Slide 8: Memory in Agents -->
+<div class="slide slide-content" id="slide-8">
+    <h2>Agent Memory: Remembering and Retrieving</h2>
+    <p>Without memory, agents forget everything between interactions. Memory systems give agents <strong>continuity</strong> and <strong>context</strong>.</p>
+    <div class="two-col">
+        <div class="col">
+            <h3>Short-Term Memory</h3>
+            <ul>
+                <li>Current conversation context</li>
+                <li>Working notes during a task</li>
+                <li>Limited by context window size</li>
+            </ul>
+        </div>
+        <div class="col">
+            <h3>Long-Term Memory</h3>
+            <ul>
+                <li>Stored in vector databases</li>
+                <li>Persists across sessions</li>
+                <li>Retrieved via similarity search (RAG)</li>
+            </ul>
+        </div>
+    </div>
+    <div class="highlight-box" style="margin-top: 25px;">
+        <p><strong>RAG (Retrieval-Augmented Generation):</strong> The agent searches a knowledge base for relevant info and includes it in its reasoning.</p>
+    </div>
+</div>
+
+<!-- Slide 9: Planning Architectures -->
+<div class="slide slide-content" id="slide-9">
+    <h2>How Agents Plan</h2>
+    <p>For complex tasks, agents need to <strong>plan ahead</strong> rather than just react step-by-step.</p>
+    <ul>
+        <li><strong>Plan-and-Execute:</strong> First create a full plan, then execute each step</li>
+        <li><strong>Chain-of-Thought:</strong> Reason through the problem step-by-step before acting</li>
+        <li><strong>Tree-of-Thought:</strong> Explore multiple reasoning paths and pick the best one</li>
+        <li><strong>Reflexion:</strong> After completing a task, reflect on what went wrong and improve</li>
+    </ul>
+    <div class="highlight-box">
+        <p><strong>Example — Plan-and-Execute:</strong><br>
+        1. Research the topic &rarr; 2. Outline the article &rarr; 3. Write each section &rarr; 4. Review and edit &rarr; 5. Format and deliver</p>
+    </div>
+</div>
+
+<!-- Slide 10: Multi-Agent Systems -->
+<div class="slide slide-content" id="slide-10">
+    <h2>Multi-Agent Systems</h2>
+    <p>Instead of one agent doing everything, <strong>multiple specialized agents</strong> can collaborate — each with its own role and expertise.</p>
+    <div class="diagram">
+        <div class="diagram-box" style="border-color: #f472b6;">Orchestrator<br><small>Assigns tasks</small></div>
+        <div class="diagram-arrow">&#8594;</div>
+        <div class="diagram-box">Researcher<br><small>Finds info</small></div>
+    </div>
+    <div class="diagram" style="margin-top: 10px;">
+        <div class="diagram-box" style="border-color: #f472b6; visibility: hidden;">Orchestrator</div>
+        <div class="diagram-arrow">&#8594;</div>
+        <div class="diagram-box">Writer<br><small>Drafts content</small></div>
+    </div>
+    <div class="diagram" style="margin-top: 10px;">
+        <div class="diagram-box" style="border-color: #f472b6; visibility: hidden;">Orchestrator</div>
+        <div class="diagram-arrow">&#8594;</div>
+        <div class="diagram-box">Reviewer<br><small>Checks quality</small></div>
+    </div>
+    <ul style="margin-top: 15px;">
+        <li>Each agent focuses on what it does best</li>
+        <li>Agents communicate through messages or shared state</li>
+        <li>Frameworks like <strong>CrewAI</strong>, <strong>AutoGen</strong>, and <strong>LangGraph</strong> make this easier</li>
+    </ul>
+</div>
+
+<!-- Slide 11: Real-World Applications -->
+<div class="slide slide-content" id="slide-11">
+    <h2>Real-World Applications of Agentic AI</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Domain</th>
+                <th>Application</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><strong>Software Engineering</strong></td>
+                <td>Coding agents that write, debug, and deploy code (e.g., Claude Code, Devin)</td>
+            </tr>
+            <tr>
+                <td><strong>Research</strong></td>
+                <td>Agents that read papers, summarize findings, and generate hypotheses</td>
+            </tr>
+            <tr>
+                <td><strong>Customer Support</strong></td>
+                <td>Autonomous agents that resolve tickets, look up accounts, and escalate issues</td>
+            </tr>
+            <tr>
+                <td><strong>Data Analysis</strong></td>
+                <td>Agents that query databases, create charts, and write reports</td>
+            </tr>
+            <tr>
+                <td><strong>Business Operations</strong></td>
+                <td>Workflow automation — scheduling, invoicing, email management</td>
+            </tr>
+            <tr>
+                <td><strong>Education</strong></td>
+                <td>Personalized tutoring agents that adapt to each student's pace</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<!-- Slide 12: Agent Frameworks -->
+<div class="slide slide-content" id="slide-12">
+    <h2>Popular Agent Frameworks</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Framework</th>
+                <th>Best For</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><strong>LangChain / LangGraph</strong></td>
+                <td>General-purpose agent building with flexible tool integration</td>
+            </tr>
+            <tr>
+                <td><strong>CrewAI</strong></td>
+                <td>Multi-agent collaboration with role-based agents</td>
+            </tr>
+            <tr>
+                <td><strong>AutoGen (Microsoft)</strong></td>
+                <td>Conversational multi-agent patterns and code execution</td>
+            </tr>
+            <tr>
+                <td><strong>OpenClaw</strong></td>
+                <td>Our platform — hands-on agent building and deployment</td>
+            </tr>
+            <tr>
+                <td><strong>Anthropic Agent SDK</strong></td>
+                <td>Building agents powered by Claude with native tool use</td>
+            </tr>
+        </tbody>
+    </table>
+    <div class="highlight-box" style="margin-top: 25px;">
+        <p>In this course, we will primarily use <strong>OpenClaw</strong> along with LangChain and CrewAI for hands-on labs.</p>
+    </div>
+</div>
+
+<!-- Slide 13: Safety & Guardrails -->
+<div class="slide slide-content" id="slide-13">
+    <h2>Safety, Ethics & Guardrails</h2>
+    <p>Autonomous agents are powerful — but they need <strong>boundaries</strong> to operate safely.</p>
+    <ul>
+        <li><strong>Hallucination Risk:</strong> Agents can act on incorrect information — always verify critical outputs</li>
+        <li><strong>Infinite Loops:</strong> Without limits, agents may repeat actions endlessly — set max iterations</li>
+        <li><strong>Harmful Actions:</strong> Agents with file/system access need sandboxing and permission controls</li>
+        <li><strong>Human-in-the-Loop:</strong> For high-stakes decisions, require human approval before execution</li>
+        <li><strong>Transparency:</strong> Log all agent reasoning and actions for auditability</li>
+        <li><strong>Bias & Fairness:</strong> Agents inherit biases from their training data — test for and mitigate bias</li>
+    </ul>
+</div>
+
+<!-- Slide 14: Course Structure -->
+<div class="slide slide-content" id="slide-14">
+    <h2>Course Structure Overview</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Week</th>
+                <th>Topic</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr><td>1</td><td>Introduction to Agentic AI & The Agent Landscape</td></tr>
+            <tr><td>2</td><td>LLMs as Reasoning Engines & The ReAct Pattern</td></tr>
+            <tr><td>3</td><td>Tool Use & External Integrations</td></tr>
+            <tr><td>4</td><td>Memory & Context Management</td></tr>
+            <tr><td>5</td><td>Planning Architectures & Self-Reflection</td></tr>
+            <tr><td>6</td><td>Multi-Agent Systems</td></tr>
+            <tr><td>7</td><td>Safety, Ethics & Evaluation</td></tr>
+            <tr><td>8</td><td>Capstone Projects & Future Directions</td></tr>
+        </tbody>
+    </table>
+</div>
+
+<!-- Slide 15: What You'll Build -->
+<div class="slide slide-content" id="slide-15">
+    <h2>What You Will Build</h2>
+    <ul>
+        <li><strong>Lab 1:</strong> A ReAct agent from scratch — observe the think-act-observe loop in action</li>
+        <li><strong>Lab 2:</strong> A tool-augmented Q&A agent — search the web, read files, answer questions</li>
+        <li><strong>Lab 3:</strong> An agent with persistent memory — remember past conversations using vector search</li>
+        <li><strong>Lab 4:</strong> A multi-agent research team — researcher, writer, and reviewer working together</li>
+        <li><strong>Capstone:</strong> A complete agentic system solving a real-world problem of your choice</li>
+    </ul>
+    <div class="highlight-box">
+        <p>By the end of this course, you won't just understand Agentic AI — you'll have <strong>built</strong> multiple working agents.</p>
+    </div>
+</div>
+
+<!-- Slide 16: Let's Get Started -->
+<div class="slide slide-end" id="slide-16">
+    <h2>Let's Build the Future of AI</h2>
+    <p style="font-size: 1.4em; color: #94a3b8; margin-bottom: 30px;">Welcome to Agentic AI — OLI-AAI-101</p>
+    <p style="font-size: 1.1em; color: #64748b;">OpenClaw Learning Initiative</p>
+</div>
+
+<!-- Navigation -->
+<div class="nav">
+    <button onclick="prevSlide()">&#9664; Prev</button>
+    <button onclick="nextSlide()">Next &#9654;</button>
+</div>
+
+<div class="slide-counter" id="slideCounter">1 / 16</div>
+
+<script>
+    let current = 1;
+    const total = 16;
+
+    function showSlide(n) {
+        document.querySelector('.slide.active').classList.remove('active');
+        document.getElementById('slide-' + n).classList.add('active');
+        document.getElementById('slideCounter').textContent = n + ' / ' + total;
+        document.getElementById('progressBar').style.width = ((n / total) * 100) + '%';
+    }
+
+    function nextSlide() {
+        if (current < total) {
+            current++;
+            showSlide(current);
+        }
+    }
+
+    function prevSlide() {
+        if (current > 1) {
+            current--;
+            showSlide(current);
+        }
+    }
+
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'ArrowRight' || e.key === ' ') {
+            e.preventDefault();
+            nextSlide();
+        }
+        if (e.key === 'ArrowLeft') {
+            e.preventDefault();
+            prevSlide();
+        }
+    });
+
+    // Initialize progress bar
+    document.getElementById('progressBar').style.width = ((1 / total) * 100) + '%';
+</script>
+
+</body>
+</html>
