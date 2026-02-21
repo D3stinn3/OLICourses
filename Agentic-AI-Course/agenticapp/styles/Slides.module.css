@@ -1,0 +1,311 @@
+/* ── Progress bar ── */
+.progressBar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 4px;
+  background: linear-gradient(90deg, #60a5fa, #a78bfa);
+  transition: width 0.3s ease;
+  z-index: 100;
+}
+
+/* ── Slide wrapper ── */
+.wrapper {
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  position: relative;
+}
+
+/* ── Base slide ── */
+.slide {
+  width: 100vw;
+  height: 100vh;
+  padding: 60px 80px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  overflow-y: auto;
+}
+
+/* ── Title slide ── */
+.slideTitle {
+  background: linear-gradient(135deg, #0a0a2e 0%, #1a1a4e 40%, #2d1b69 100%);
+  text-align: center;
+  align-items: center;
+}
+
+.slideTitleH1 {
+  font-size: 3.5em;
+  font-weight: 800;
+  background: linear-gradient(90deg, #60a5fa, #a78bfa, #f472b6);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin-bottom: 20px;
+}
+
+.slideTitleSub {
+  font-size: 1.5em;
+  color: #94a3b8;
+  margin-bottom: 40px;
+}
+
+.slideTitleMeta {
+  font-size: 1em;
+  color: #64748b;
+}
+
+/* ── Content slide ── */
+.slideContent {
+  background: linear-gradient(180deg, #0f0f2e 0%, #1a1a3e 100%);
+}
+
+.heading {
+  font-size: 2.4em;
+  font-weight: 700;
+  color: #60a5fa;
+  margin-bottom: 40px;
+  padding-bottom: 15px;
+  border-bottom: 3px solid #1e3a5f;
+}
+
+.paragraph {
+  font-size: 1.3em;
+  line-height: 1.8;
+  color: #cbd5e1;
+  margin-bottom: 20px;
+}
+
+.bullets {
+  list-style: none;
+  padding: 0;
+}
+
+.bullets li {
+  font-size: 1.35em;
+  line-height: 1.6;
+  margin-bottom: 18px;
+  padding-left: 35px;
+  position: relative;
+  color: #cbd5e1;
+}
+
+.bullets li::before {
+  content: '\25B8';
+  position: absolute;
+  left: 0;
+  color: #a78bfa;
+  font-weight: bold;
+}
+
+/* ── Highlight box ── */
+.highlightBox {
+  background: rgba(96, 165, 250, 0.1);
+  border-left: 4px solid #60a5fa;
+  padding: 20px 25px;
+  border-radius: 0 8px 8px 0;
+  margin: 25px 0;
+  font-size: 1.2em;
+  line-height: 1.7;
+  color: #cbd5e1;
+}
+
+/* ── Two columns ── */
+.twoCol {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 50px;
+  margin-top: 10px;
+}
+
+.colTitle {
+  font-size: 1.4em;
+  color: #a78bfa;
+  margin-bottom: 20px;
+}
+
+.colList {
+  list-style: none;
+  padding: 0;
+}
+
+.colList li {
+  font-size: 1.15em;
+  line-height: 1.6;
+  margin-bottom: 12px;
+  padding-left: 30px;
+  position: relative;
+  color: #cbd5e1;
+}
+
+.colList li::before {
+  content: '\25B8';
+  position: absolute;
+  left: 0;
+  color: #a78bfa;
+  font-weight: bold;
+}
+
+/* ── Diagram ── */
+.diagram {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  margin: 30px 0;
+  flex-wrap: wrap;
+}
+
+.diagramBox {
+  background: rgba(167, 139, 250, 0.15);
+  border: 2px solid #a78bfa;
+  border-radius: 12px;
+  padding: 25px 30px;
+  text-align: center;
+  font-size: 1.15em;
+  font-weight: 600;
+  color: #e0e0e0;
+  min-width: 140px;
+}
+
+.diagramBoxAccent {
+  border-color: #f472b6;
+}
+
+.diagramSub {
+  display: block;
+  font-size: 0.75em;
+  font-weight: 400;
+  color: #94a3b8;
+  margin-top: 4px;
+}
+
+.diagramArrow {
+  font-size: 2em;
+  color: #60a5fa;
+}
+
+/* ── Table ── */
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+.table th {
+  background: rgba(96, 165, 250, 0.2);
+  color: #60a5fa;
+  padding: 14px 20px;
+  text-align: left;
+  font-size: 1.15em;
+  border-bottom: 2px solid #1e3a5f;
+}
+
+.table td {
+  padding: 12px 20px;
+  font-size: 1.1em;
+  border-bottom: 1px solid #1e2a3f;
+  color: #cbd5e1;
+}
+
+.table tr:hover td {
+  background: rgba(96, 165, 250, 0.05);
+}
+
+/* ── End slide ── */
+.slideEnd {
+  background: linear-gradient(135deg, #1a1a4e 0%, #2d1b69 50%, #4a1d6e 100%);
+  text-align: center;
+  align-items: center;
+}
+
+.slideEndH2 {
+  font-size: 3em;
+  font-weight: 700;
+  background: linear-gradient(90deg, #60a5fa, #a78bfa);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin-bottom: 25px;
+}
+
+.slideEndSub {
+  font-size: 1.4em;
+  color: #94a3b8;
+  margin-bottom: 30px;
+}
+
+.slideEndMeta {
+  font-size: 1.1em;
+  color: #64748b;
+}
+
+/* ── Navigation ── */
+.nav {
+  position: fixed;
+  bottom: 30px;
+  right: 40px;
+  display: flex;
+  gap: 12px;
+  z-index: 100;
+}
+
+.navBtn {
+  background: rgba(96, 165, 250, 0.2);
+  border: 1px solid #60a5fa;
+  color: #60a5fa;
+  padding: 10px 22px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 1em;
+  transition: all 0.2s;
+}
+
+.navBtn:hover {
+  background: rgba(96, 165, 250, 0.4);
+}
+
+.counter {
+  position: fixed;
+  bottom: 35px;
+  left: 40px;
+  color: #475569;
+  font-size: 0.95em;
+  z-index: 100;
+}
+
+.backLink {
+  position: fixed;
+  top: 20px;
+  left: 30px;
+  color: #475569;
+  font-size: 0.9em;
+  z-index: 100;
+  transition: color 0.2s;
+}
+
+.backLink:hover {
+  color: #60a5fa;
+}
+
+/* ── Responsive ── */
+@media (max-width: 768px) {
+  .slide {
+    padding: 40px 24px;
+  }
+  .slideTitleH1 {
+    font-size: 2.2em;
+  }
+  .heading {
+    font-size: 1.6em;
+  }
+  .twoCol {
+    grid-template-columns: 1fr;
+    gap: 30px;
+  }
+  .diagram {
+    flex-direction: column;
+  }
+  .diagramArrow {
+    transform: rotate(90deg);
+  }
+}
