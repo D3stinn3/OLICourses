@@ -1,0 +1,273 @@
+/* ── XP Bar (Navbar) ── */
+.xpBarWrap {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 4px 12px;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 20px;
+  border: 1px solid rgba(96, 165, 250, 0.15);
+  font-size: 0.8rem;
+  color: #94a3b8;
+}
+
+.levelBadge {
+  background: linear-gradient(135deg, #60a5fa, #a78bfa);
+  color: #fff;
+  font-weight: 700;
+  font-size: 0.7rem;
+  padding: 2px 8px;
+  border-radius: 10px;
+  white-space: nowrap;
+}
+
+.xpTrack {
+  width: 80px;
+  height: 6px;
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 3px;
+  overflow: hidden;
+}
+
+.xpFill {
+  height: 100%;
+  background: linear-gradient(90deg, #60a5fa, #a78bfa);
+  border-radius: 3px;
+  transition: width 0.6s ease;
+}
+
+.xpText {
+  font-size: 0.75rem;
+  color: #60a5fa;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+/* ── Streak Counter ── */
+.streakWrap {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 4px 10px;
+  background: rgba(251, 146, 60, 0.1);
+  border: 1px solid rgba(251, 146, 60, 0.2);
+  border-radius: 20px;
+  font-size: 0.8rem;
+  color: #fb923c;
+  font-weight: 600;
+}
+
+.streakIcon {
+  font-size: 1rem;
+}
+
+/* ── Achievement Toast ── */
+.toastOverlay {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  z-index: 10000;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.toast {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: rgba(15, 15, 46, 0.95);
+  border: 1px solid rgba(167, 139, 250, 0.4);
+  border-radius: 12px;
+  padding: 14px 20px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4), 0 0 20px rgba(167, 139, 250, 0.2);
+  min-width: 280px;
+}
+
+.toastIcon {
+  font-size: 2rem;
+}
+
+.toastContent {
+  flex: 1;
+}
+
+.toastTitle {
+  color: #e2e8f0;
+  font-weight: 700;
+  font-size: 0.95rem;
+  margin-bottom: 2px;
+}
+
+.toastDesc {
+  color: #94a3b8;
+  font-size: 0.8rem;
+}
+
+.toastXP {
+  color: #a78bfa;
+  font-weight: 700;
+  font-size: 0.85rem;
+}
+
+/* ── Leaderboard ── */
+.leaderboardContainer {
+  max-width: 700px;
+  margin: 0 auto;
+  padding: 40px 24px;
+}
+
+.leaderboardTitle {
+  font-size: 2rem;
+  background: linear-gradient(135deg, #60a5fa, #a78bfa, #f472b6);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin-bottom: 8px;
+}
+
+.leaderboardSubtitle {
+  color: #94a3b8;
+  margin-bottom: 32px;
+}
+
+.leaderboardList {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.leaderboardEntry {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 14px 20px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(96, 165, 250, 0.1);
+  border-radius: 12px;
+  transition: background 0.2s;
+}
+
+.leaderboardEntry:hover {
+  background: rgba(96, 165, 250, 0.05);
+}
+
+.rank {
+  font-size: 1.2rem;
+  font-weight: 800;
+  width: 40px;
+  text-align: center;
+}
+
+.rank1 { color: #fbbf24; }
+.rank2 { color: #94a3b8; }
+.rank3 { color: #cd7f32; }
+.rankOther { color: #475569; }
+
+.entryName {
+  flex: 1;
+  color: #e0e0e0;
+  font-weight: 600;
+}
+
+.entryXP {
+  color: #60a5fa;
+  font-weight: 700;
+  font-size: 0.95rem;
+}
+
+.entryLevel {
+  background: rgba(167, 139, 250, 0.15);
+  color: #a78bfa;
+  padding: 4px 10px;
+  border-radius: 8px;
+  font-size: 0.8rem;
+  font-weight: 600;
+}
+
+.entryTier {
+  color: #94a3b8;
+  font-size: 0.8rem;
+  text-transform: capitalize;
+}
+
+/* ── Quest Panel ── */
+.questPanel {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.questCard {
+  padding: 16px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(96, 165, 250, 0.1);
+  border-radius: 12px;
+}
+
+.questHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 6px;
+}
+
+.questTitle {
+  color: #e0e0e0;
+  font-weight: 600;
+  font-size: 0.95rem;
+}
+
+.questReward {
+  color: #a78bfa;
+  font-weight: 700;
+  font-size: 0.85rem;
+}
+
+.questDesc {
+  color: #94a3b8;
+  font-size: 0.85rem;
+  margin-bottom: 10px;
+}
+
+.questProgress {
+  height: 6px;
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 3px;
+  overflow: hidden;
+}
+
+.questFill {
+  height: 100%;
+  background: linear-gradient(90deg, #60a5fa, #a78bfa);
+  border-radius: 3px;
+  transition: width 0.4s ease;
+}
+
+.questComplete {
+  border-color: rgba(74, 222, 128, 0.3);
+  background: rgba(74, 222, 128, 0.05);
+}
+
+.questCompleteTag {
+  color: #4ade80;
+  font-weight: 700;
+  font-size: 0.8rem;
+}
+
+/* ── Responsive ── */
+@media (max-width: 768px) {
+  .xpBarWrap {
+    display: none;
+  }
+  .leaderboardContainer {
+    padding: 20px 16px;
+  }
+  .leaderboardEntry {
+    padding: 10px 14px;
+    gap: 10px;
+  }
+  .entryTier {
+    display: none;
+  }
+}

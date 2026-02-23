@@ -1,0 +1,556 @@
+/* ── Engagement Consent Modal ── */
+.consentOverlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9000;
+  backdrop-filter: blur(4px);
+}
+
+.consentModal {
+  background: #0f0f2e;
+  border: 1px solid rgba(96, 165, 250, 0.2);
+  border-radius: 20px;
+  padding: 36px 32px;
+  max-width: 480px;
+  width: 90%;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+}
+
+.consentIcon {
+  font-size: 2.8rem;
+  display: block;
+  text-align: center;
+  margin-bottom: 16px;
+}
+
+.consentTitle {
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: #e2e8f0;
+  text-align: center;
+  margin-bottom: 8px;
+}
+
+.consentDesc {
+  color: #94a3b8;
+  font-size: 0.9rem;
+  line-height: 1.6;
+  text-align: center;
+  margin-bottom: 24px;
+}
+
+.consentFeatures {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 24px 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.consentFeature {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  color: #cbd5e1;
+  font-size: 0.85rem;
+  line-height: 1.4;
+}
+
+.featureIcon {
+  flex-shrink: 0;
+  width: 20px;
+  text-align: center;
+}
+
+.consentPrivacy {
+  background: rgba(96, 165, 250, 0.06);
+  border: 1px solid rgba(96, 165, 250, 0.12);
+  border-radius: 10px;
+  padding: 12px 14px;
+  margin-bottom: 24px;
+}
+
+.privacyText {
+  color: #60a5fa;
+  font-size: 0.8rem;
+  line-height: 1.5;
+}
+
+.consentButtons {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+}
+
+.consentEnable {
+  background: linear-gradient(135deg, #60a5fa, #a78bfa);
+  color: #fff;
+  border: none;
+  padding: 10px 28px;
+  border-radius: 10px;
+  font-weight: 600;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: transform 0.15s, box-shadow 0.15s;
+}
+
+.consentEnable:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 20px rgba(96, 165, 250, 0.3);
+}
+
+.consentDismiss {
+  background: rgba(255, 255, 255, 0.06);
+  color: #94a3b8;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 10px 24px;
+  border-radius: 10px;
+  font-weight: 500;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.consentDismiss:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+/* ── Engagement Tracker (small overlay — top-right to avoid slide nav) ── */
+.trackerWrap {
+  position: fixed;
+  top: 80px;
+  right: 20px;
+  z-index: 8000;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(15, 15, 46, 0.85);
+  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(8px);
+  padding: 6px 12px;
+  border-radius: 20px;
+  border: 1px solid rgba(96, 165, 250, 0.12);
+}
+
+.engagementDot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  transition: background 0.3s;
+  flex-shrink: 0;
+}
+
+.dotHigh {
+  background: #4ade80;
+  box-shadow: 0 0 6px rgba(74, 222, 128, 0.5);
+}
+
+.dotMedium {
+  background: #fbbf24;
+  box-shadow: 0 0 6px rgba(251, 191, 36, 0.5);
+}
+
+.dotLow {
+  background: #f87171;
+  box-shadow: 0 0 6px rgba(248, 113, 113, 0.5);
+}
+
+.dotNoFace {
+  background: #64748b;
+  box-shadow: none;
+}
+
+.trackerLabel {
+  font-size: 0.7rem;
+  color: #94a3b8;
+  white-space: nowrap;
+}
+
+.trackerToggle {
+  background: none;
+  border: none;
+  color: #64748b;
+  font-size: 0.65rem;
+  padding: 2px 6px;
+  cursor: pointer;
+  transition: color 0.2s;
+  white-space: nowrap;
+}
+
+.trackerToggle:hover {
+  color: #f87171;
+}
+
+.trackerScore {
+  font-size: 0.65rem;
+  color: #60a5fa;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+/* ── Webcam Preview (hover) ── */
+.previewWrap {
+  position: absolute;
+  top: calc(100% + 10px);
+  right: 0;
+  width: 200px;
+  border-radius: 12px;
+  overflow: hidden;
+  border: 1px solid rgba(96, 165, 250, 0.2);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+  animation: previewFadeIn 0.2s ease-out;
+}
+
+@keyframes previewFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.previewVideo {
+  width: 100%;
+  height: auto;
+  display: block;
+  transform: scaleX(-1);
+  background: #0a0a1e;
+}
+
+.previewOverlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 6px 10px;
+  background: linear-gradient(transparent, rgba(0, 0, 0, 0.7));
+  text-align: center;
+}
+
+.previewScore {
+  font-size: 0.7rem;
+  color: #4ade80;
+  font-weight: 600;
+}
+
+.previewNoFace {
+  font-size: 0.7rem;
+  color: #f87171;
+  font-weight: 500;
+}
+
+/* ── Break Suggestion Toast ── */
+.breakBanner {
+  position: fixed;
+  top: 120px;
+  right: 20px;
+  z-index: 8500;
+  background: rgba(15, 15, 46, 0.92);
+  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(251, 146, 60, 0.25);
+  border-radius: 14px;
+  padding: 14px 18px;
+  max-width: 260px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  animation: slideIn 0.3s ease-out;
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateX(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.breakText {
+  color: #fb923c;
+  font-size: 0.8rem;
+  font-weight: 500;
+  line-height: 1.4;
+}
+
+.breakDismiss {
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  color: #94a3b8;
+  font-size: 0.7rem;
+  cursor: pointer;
+  padding: 4px 12px;
+  border-radius: 6px;
+  align-self: flex-end;
+  transition: background 0.2s;
+}
+
+.breakDismiss:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+/* ── Engagement Dashboard ── */
+.dashContainer {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 40px 24px;
+}
+
+.dashTitle {
+  font-size: 2rem;
+  background: linear-gradient(135deg, #60a5fa, #4ade80);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin-bottom: 8px;
+}
+
+.dashSubtitle {
+  color: #94a3b8;
+  margin-bottom: 32px;
+}
+
+.statsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 16px;
+  margin-bottom: 32px;
+}
+
+.statCard {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(96, 165, 250, 0.1);
+  border-radius: 14px;
+  padding: 20px;
+  text-align: center;
+}
+
+.statValue {
+  font-size: 2rem;
+  font-weight: 800;
+  color: #60a5fa;
+  margin-bottom: 4px;
+}
+
+.statLabel {
+  color: #94a3b8;
+  font-size: 0.8rem;
+  font-weight: 500;
+}
+
+.sectionTitle {
+  color: #e2e8f0;
+  font-size: 1.2rem;
+  font-weight: 700;
+  margin-bottom: 16px;
+  margin-top: 16px;
+}
+
+.sessionList {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.sessionRow {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 14px 18px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(96, 165, 250, 0.08);
+  border-radius: 12px;
+}
+
+.sessionDate {
+  color: #94a3b8;
+  font-size: 0.85rem;
+  min-width: 100px;
+}
+
+.sessionBar {
+  flex: 1;
+  height: 8px;
+  background: rgba(255, 255, 255, 0.06);
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.sessionFill {
+  height: 100%;
+  border-radius: 4px;
+  transition: width 0.5s ease;
+}
+
+.fillHigh { background: linear-gradient(90deg, #4ade80, #22d3ee); }
+.fillMedium { background: linear-gradient(90deg, #fbbf24, #fb923c); }
+.fillLow { background: linear-gradient(90deg, #f87171, #ef4444); }
+
+.sessionScore {
+  min-width: 50px;
+  text-align: right;
+  font-weight: 700;
+  font-size: 0.9rem;
+}
+
+.scoreHigh { color: #4ade80; }
+.scoreMedium { color: #fbbf24; }
+.scoreLow { color: #f87171; }
+
+.sessionEmotion {
+  font-size: 1.2rem;
+  min-width: 30px;
+  text-align: center;
+}
+
+.emotionGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  gap: 10px;
+  margin-bottom: 32px;
+}
+
+.emotionCard {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(96, 165, 250, 0.08);
+  border-radius: 12px;
+  padding: 16px;
+  text-align: center;
+}
+
+.emotionEmoji {
+  font-size: 1.6rem;
+  margin-bottom: 6px;
+}
+
+.emotionName {
+  color: #cbd5e1;
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-transform: capitalize;
+  margin-bottom: 4px;
+}
+
+.emotionCount {
+  color: #60a5fa;
+  font-weight: 700;
+  font-size: 0.9rem;
+}
+
+.insightCard {
+  background: rgba(96, 165, 250, 0.06);
+  border: 1px solid rgba(96, 165, 250, 0.15);
+  border-radius: 14px;
+  padding: 20px;
+  margin-bottom: 12px;
+}
+
+.insightText {
+  color: #cbd5e1;
+  font-size: 0.9rem;
+  line-height: 1.5;
+}
+
+.emptyState {
+  text-align: center;
+  padding: 60px 20px;
+  color: #64748b;
+}
+
+.emptyIcon {
+  font-size: 3rem;
+  margin-bottom: 12px;
+}
+
+.emptyText {
+  font-size: 1rem;
+  margin-bottom: 6px;
+  color: #94a3b8;
+}
+
+.emptyHint {
+  font-size: 0.85rem;
+  line-height: 1.6;
+}
+
+/* ── Smart Learning Toggle ── */
+.toggleEnable {
+  background: linear-gradient(135deg, #60a5fa, #a78bfa);
+  color: #fff;
+  border: none;
+  padding: 12px 32px;
+  border-radius: 12px;
+  font-weight: 600;
+  font-size: 0.95rem;
+  cursor: pointer;
+  margin-top: 20px;
+  transition: transform 0.15s, box-shadow 0.15s;
+}
+
+.toggleEnable:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 24px rgba(96, 165, 250, 0.35);
+}
+
+.toggleEnable:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.toggleDisable {
+  background: rgba(248, 113, 113, 0.1);
+  color: #f87171;
+  border: 1px solid rgba(248, 113, 113, 0.2);
+  padding: 12px 32px;
+  border-radius: 12px;
+  font-weight: 600;
+  font-size: 0.95rem;
+  cursor: pointer;
+  margin-top: 20px;
+  transition: background 0.2s;
+}
+
+.toggleDisable:hover {
+  background: rgba(248, 113, 113, 0.2);
+}
+
+.toggleDisable:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.toggleSection {
+  text-align: center;
+  margin-top: 32px;
+  padding-top: 24px;
+  border-top: 1px solid rgba(96, 165, 250, 0.08);
+}
+
+/* ── Responsive ── */
+@media (max-width: 768px) {
+  .dashContainer {
+    padding: 20px 16px;
+  }
+  .statsGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .emotionGrid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  .sessionRow {
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+}

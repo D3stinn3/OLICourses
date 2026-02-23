@@ -1,0 +1,219 @@
+/* ── Inspect Toggle Button ── */
+.inspectToggle {
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(167, 139, 250, 0.2);
+  color: #a78bfa;
+  font-size: 0.75rem;
+  font-weight: 600;
+  padding: 4px 12px;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: all 0.2s;
+  white-space: nowrap;
+}
+
+.inspectToggle:hover {
+  background: rgba(167, 139, 250, 0.1);
+  border-color: rgba(167, 139, 250, 0.4);
+}
+
+.inspectToggleActive {
+  background: rgba(167, 139, 250, 0.15);
+  border-color: rgba(167, 139, 250, 0.5);
+  color: #c4b5fd;
+  box-shadow: 0 0 12px rgba(167, 139, 250, 0.2);
+}
+
+/* ── Inspect Overlay ── */
+.inspectOverlay {
+  position: fixed;
+  inset: 0;
+  z-index: 7000;
+  pointer-events: none;
+  padding: 80px 20px 20px;
+  overflow-y: auto;
+}
+
+.inspectPanel {
+  pointer-events: all;
+  position: fixed;
+  top: 70px;
+  right: 20px;
+  width: 360px;
+  max-height: calc(100vh - 100px);
+  overflow-y: auto;
+  background: rgba(10, 10, 36, 0.96);
+  border: 1px solid rgba(167, 139, 250, 0.25);
+  border-radius: 16px;
+  padding: 24px;
+  box-shadow: 0 16px 48px rgba(0, 0, 0, 0.5), 0 0 30px rgba(167, 139, 250, 0.08);
+  backdrop-filter: blur(8px);
+}
+
+.inspectHeader {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 20px;
+  padding-bottom: 14px;
+  border-bottom: 1px solid rgba(167, 139, 250, 0.12);
+}
+
+.inspectHeaderIcon {
+  font-size: 1.3rem;
+}
+
+.inspectTitle {
+  font-size: 1rem;
+  font-weight: 700;
+  color: #c4b5fd;
+  flex: 1;
+}
+
+.inspectClose {
+  background: none;
+  border: none;
+  color: #64748b;
+  font-size: 1.2rem;
+  cursor: pointer;
+  padding: 0;
+  line-height: 1;
+}
+
+.inspectClose:hover {
+  color: #94a3b8;
+}
+
+/* ── Inspect Sections ── */
+.inspectSection {
+  margin-bottom: 20px;
+}
+
+.sectionLabel {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: #64748b;
+  margin-bottom: 8px;
+}
+
+.sectionIcon {
+  font-size: 0.85rem;
+}
+
+.codeBlock {
+  background: rgba(0, 0, 0, 0.4);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 10px;
+  padding: 12px;
+  font-family: 'JetBrains Mono', 'Fira Code', monospace;
+  font-size: 0.72rem;
+  line-height: 1.6;
+  color: #cbd5e1;
+  overflow-x: auto;
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+.keyword {
+  color: #c084fc;
+}
+
+.string {
+  color: #4ade80;
+}
+
+.comment {
+  color: #475569;
+  font-style: italic;
+}
+
+.number {
+  color: #fb923c;
+}
+
+.infoRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 6px 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+}
+
+.infoLabel {
+  color: #64748b;
+  font-size: 0.8rem;
+}
+
+.infoValue {
+  color: #e2e8f0;
+  font-size: 0.8rem;
+  font-weight: 600;
+}
+
+.infoBadge {
+  background: rgba(96, 165, 250, 0.12);
+  color: #60a5fa;
+  padding: 2px 8px;
+  border-radius: 6px;
+  font-size: 0.72rem;
+  font-weight: 600;
+}
+
+.pipelineFlow {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.pipelineStep {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 10px;
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.04);
+  border-radius: 8px;
+  font-size: 0.78rem;
+  color: #94a3b8;
+}
+
+.pipelineStepIcon {
+  font-size: 0.9rem;
+  flex-shrink: 0;
+}
+
+.pipelineArrow {
+  text-align: center;
+  color: #475569;
+  font-size: 0.7rem;
+}
+
+.lessonLink {
+  display: inline-block;
+  margin-top: 10px;
+  color: #60a5fa;
+  font-size: 0.78rem;
+  font-weight: 500;
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.lessonLink:hover {
+  color: #93c5fd;
+  text-decoration: underline;
+}
+
+/* ── Responsive ── */
+@media (max-width: 768px) {
+  .inspectPanel {
+    width: calc(100% - 40px);
+    right: 20px;
+    left: 20px;
+    top: 70px;
+  }
+}

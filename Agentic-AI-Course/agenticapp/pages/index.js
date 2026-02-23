@@ -17,9 +17,14 @@ export default function Home() {
       {/* Nav */}
       <nav className={styles.nav}>
         <span className={styles.logo}>Scwripts</span>
-        <Link href="/slides" className={styles.navLink}>
-          Start Course &rarr;
-        </Link>
+        <div style={{ display: 'flex', gap: '16px', alignItems: 'center' }}>
+          <Link href="/courses" className={styles.navLink}>
+            Courses
+          </Link>
+          <Link href="/login" className={styles.navLink}>
+            Sign In
+          </Link>
+        </div>
       </nav>
 
       {/* Hero */}
@@ -31,8 +36,8 @@ export default function Home() {
           agent-powered education — from first principles to real-world
           multi-agent projects.
         </p>
-        <Link href="/slides" className={styles.cta}>
-          Start Learning
+        <Link href="/courses" className={styles.cta}>
+          Browse Courses
         </Link>
       </section>
 

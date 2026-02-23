@@ -1,0 +1,108 @@
+/* ── Visualizer Page ── */
+.container {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 40px 24px;
+}
+
+.title {
+  font-size: 2rem;
+  background: linear-gradient(135deg, #60a5fa, #a78bfa, #f472b6);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin-bottom: 8px;
+}
+
+.subtitle {
+  color: #94a3b8;
+  margin-bottom: 32px;
+  font-size: 1.05rem;
+}
+
+/* ── Scene Selector ── */
+.sceneSelector {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 24px;
+  flex-wrap: wrap;
+}
+
+.sceneBtn {
+  padding: 10px 20px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(96, 165, 250, 0.15);
+  border-radius: 10px;
+  color: #94a3b8;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.sceneBtn:hover {
+  border-color: #60a5fa;
+  color: #e0e0e0;
+}
+
+.sceneBtnActive {
+  background: rgba(96, 165, 250, 0.15);
+  border-color: #60a5fa;
+  color: #60a5fa;
+  font-weight: 600;
+}
+
+/* ── Scene Container ── */
+.sceneContainer {
+  width: 100%;
+  height: 500px;
+  border-radius: 16px;
+  overflow: hidden;
+  background: rgba(0, 0, 0, 0.3);
+  border: 1px solid rgba(96, 165, 250, 0.1);
+  margin-bottom: 24px;
+}
+
+.sceneInfo {
+  padding: 20px;
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(96, 165, 250, 0.08);
+  border-radius: 12px;
+}
+
+.sceneInfoTitle {
+  color: #e2e8f0;
+  font-size: 1.15rem;
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+
+.sceneInfoDesc {
+  color: #94a3b8;
+  line-height: 1.6;
+}
+
+.loadingScene {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  color: #94a3b8;
+  font-size: 1rem;
+}
+
+/* ── Responsive ── */
+@media (max-width: 768px) {
+  .container {
+    padding: 20px 16px;
+  }
+  .sceneContainer {
+    height: 350px;
+  }
+  .sceneSelector {
+    gap: 6px;
+  }
+  .sceneBtn {
+    padding: 8px 14px;
+    font-size: 0.8rem;
+  }
+}
