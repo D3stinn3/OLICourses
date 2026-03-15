@@ -193,23 +193,53 @@
   white-space: nowrap;
 }
 
-/* ── Webcam Preview (hover) ── */
-.previewWrap {
-  position: absolute;
-  top: calc(100% + 10px);
-  right: 0;
-  width: 200px;
-  border-radius: 12px;
-  overflow: hidden;
-  border: 1px solid rgba(96, 165, 250, 0.2);
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
-  animation: previewFadeIn 0.2s ease-out;
+.trackerCameraBtn {
+  background: none;
+  border: none;
+  color: #64748b;
+  font-size: 0.75rem;
+  padding: 2px 5px;
+  cursor: pointer;
+  transition: color 0.2s;
+  white-space: nowrap;
+  line-height: 1;
 }
 
-@keyframes previewFadeIn {
+.trackerCameraBtn:hover {
+  color: #60a5fa;
+}
+
+/* ── Camera Mirror (toggleable, always-visible when open) ── */
+.mirrorWrap {
+  position: fixed;
+  top: 116px;
+  right: 20px;
+  width: 220px;
+  z-index: 7999;
+  border-radius: 14px;
+  overflow: hidden;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+  animation: mirrorSlideIn 0.25s ease-out;
+  border: 2px solid rgba(100, 116, 139, 0.3);
+  transition: border-color 0.4s ease;
+}
+
+.mirrorBorderDetected {
+  border-color: rgba(74, 222, 128, 0.5);
+}
+
+.mirrorBorderNoFace {
+  border-color: rgba(248, 113, 113, 0.5);
+}
+
+.mirrorBorderNeutral {
+  border-color: rgba(100, 116, 139, 0.3);
+}
+
+@keyframes mirrorSlideIn {
   from {
     opacity: 0;
-    transform: translateY(-4px);
+    transform: translateY(-8px);
   }
   to {
     opacity: 1;
@@ -217,7 +247,7 @@
   }
 }
 
-.previewVideo {
+.mirrorVideo {
   width: 100%;
   height: auto;
   display: block;
@@ -225,26 +255,75 @@
   background: #0a0a1e;
 }
 
-.previewOverlay {
+.mirrorOverlay {
   position: absolute;
   bottom: 0;
   left: 0;
   right: 0;
-  padding: 6px 10px;
-  background: linear-gradient(transparent, rgba(0, 0, 0, 0.7));
-  text-align: center;
+  padding: 8px 10px;
+  background: linear-gradient(transparent, rgba(0, 0, 0, 0.75));
 }
 
-.previewScore {
-  font-size: 0.7rem;
+.mirrorStatus {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+}
+
+.mirrorDetected {
+  font-size: 0.65rem;
   color: #4ade80;
   font-weight: 600;
 }
 
-.previewNoFace {
-  font-size: 0.7rem;
+.mirrorNotDetected {
+  font-size: 0.65rem;
   color: #f87171;
+  font-weight: 600;
+}
+
+.mirrorScore {
+  font-size: 0.6rem;
+  color: #94a3b8;
   font-weight: 500;
+}
+
+.mirrorHint {
+  font-size: 0.6rem;
+  color: #fbbf24;
+  font-weight: 500;
+  text-align: center;
+}
+
+.mirrorStarting {
+  font-size: 0.6rem;
+  color: #64748b;
+  font-weight: 500;
+}
+
+.mirrorClose {
+  position: absolute;
+  top: 4px;
+  right: 6px;
+  background: rgba(0, 0, 0, 0.5);
+  border: none;
+  color: #94a3b8;
+  font-size: 1rem;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
+  transition: background 0.2s, color 0.2s;
+}
+
+.mirrorClose:hover {
+  background: rgba(0, 0, 0, 0.7);
+  color: #f87171;
 }
 
 /* ── Break Suggestion Toast ── */
@@ -538,6 +617,14 @@
   border-top: 1px solid rgba(96, 165, 250, 0.08);
 }
 
+/* ── Reduced motion ── */
+@media (prefers-reduced-motion: reduce) {
+  .mirrorWrap,
+  .breakBanner {
+    animation: none;
+  }
+}
+
 /* ── Responsive ── */
 @media (max-width: 768px) {
   .dashContainer {
@@ -552,5 +639,14 @@
   .sessionRow {
     flex-wrap: wrap;
     gap: 8px;
+  }
+  .mirrorWrap {
+    width: 160px;
+    top: 108px;
+    right: 10px;
+  }
+  .trackerWrap {
+    right: 10px;
+    top: 70px;
   }
 }

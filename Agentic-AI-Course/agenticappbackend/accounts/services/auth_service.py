@@ -15,10 +15,11 @@ class AuthService:
 
     @staticmethod
     def get_profile(user) -> dict:
+        profile = getattr(user, "profile", None)
         return {
             "id": user.id,
             "username": user.username,
             "email": user.email,
-            "bio": user.profile.bio,
-            "avatar": user.profile.avatar,
+            "bio": profile.bio if profile else "",
+            "avatar": profile.avatar if profile else None,
         }

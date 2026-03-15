@@ -8,21 +8,34 @@ export function AuthProvider({ children }) {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
+    const token = typeof window !== "undefined" ? localStorage.getItem("access_token") : null;
+    if (!token) {
+      setLoading(false);
+      return;
+    }
     api
       .getMe()
       .then((data) => {
         if (data && !data.detail) {
           setUser(data);
+        } else {
+          api.logout();
         }
       })
-      .catch(() => {})
+      .catch(() => {
+        api.logout();
+      })
       .finally(() => setLoading(false));
   }, []);
 
   async function login(username, password) {
     await api.login(username, password);
     const me = await api.getMe();
-    setUser(me);
+    if (me && !me.detail) {
+      setUser(me);
+    } else {
+      throw new Error("Failed to load user profile");
+    }
   }
 
   function logout() {

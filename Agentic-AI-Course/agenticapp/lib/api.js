@@ -73,10 +73,11 @@ export async function login(username, password) {
     body: JSON.stringify({ username, password }),
   });
   const data = await res.json();
-  if (res.ok) {
-    localStorage.setItem("access_token", data.access);
-    localStorage.setItem("refresh_token", data.refresh);
+  if (!res.ok) {
+    throw new Error(data.detail || "Invalid username or password");
   }
+  localStorage.setItem("access_token", data.access);
+  localStorage.setItem("refresh_token", data.refresh);
   return data;
 }
 
@@ -86,6 +87,9 @@ export async function register(username, email, password) {
     body: JSON.stringify({ username, email, password }),
   });
   const data = await res.json();
+  if (!res.ok) {
+    throw new Error(data.detail || "Registration failed");
+  }
   return data;
 }
 

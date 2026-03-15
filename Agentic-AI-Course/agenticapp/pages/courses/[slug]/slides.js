@@ -162,6 +162,10 @@ export default function CourseSlides() {
   const prev = useCallback(() => setCurrent((c) => Math.max(c - 1, 0)), []);
 
   useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [current]);
+
+  useEffect(() => {
     if (!slides) return;
     function onKey(e) {
       if (e.key === 'ArrowRight' || e.key === ' ') {
